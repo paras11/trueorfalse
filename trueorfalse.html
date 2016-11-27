@@ -1,0 +1,481 @@
+﻿<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>
+True or False
+</title>
+
+<style>
+body{
+background-image:url(back.jpg);
+
+}
+div#test{
+border:#5D6D7E 6px solid;
+margin-left:159px;
+height:553px;
+width:1005px;
+margin-top:40px;
+font-family:verdana;
+position:absolute;
+background-color:#FDEDEC;
+
+}
+
+
+
+.button1,.button2,.button3{
+    background-color: black; 
+    color: white;
+	position:relative;
+	
+	
+}
+
+.button1{
+margin-top:120px;
+margin-left:100px;
+
+}
+.button2{
+margin-top:50px;
+margin-left:100px;
+
+}
+
+.button3{
+margin-top:50px;
+margin-left:60px;
+
+}
+.button {
+  
+  padding: 16px 32px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: white;
+ 
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  
+  
+}
+
+.button:hover {background-color: ##808080}
+
+.button:active {
+  background-color: black;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+.buttonquit{
+    background-color: red; 
+    color: white; 
+    border: 2px solid black;
+	position:fixed;
+	margin-left:100px;
+	margin-bottom:0px;
+	font-size: 24px;
+	padding:10px 10px;
+    width:150px;
+	border-radius: 15px;
+    box-shadow: 0 9px #999;
+    
+}
+.buttont {
+    background-color: black; 
+    color: white; 
+    border: 2px solid white;
+	position:relative ;
+	margin-left:300px;
+	font-size: 50px;
+	padding:20px 12px;
+    width:200px;
+	
+}
+.buttonf  {
+    background-color: black; 
+    color: white; 
+    border: 2px solid white;
+	position:relative ;
+	margin-left:15px;
+	font-size: 50px;
+	padding:20px 12px;
+    width:200px;
+}
+.button1:hover {
+    background-color: #808080;
+    color: white;
+}
+.button2:hover {
+    background-color: #808080;
+    color: white;
+}
+.button3:hover {
+    background-color: #808080;
+    color: white;
+}
+.buttont:hover {
+    background-color: green;
+    color: white;
+}
+.buttonf:hover {
+    background-color: red;
+    color: white;
+}
+.front{
+position:absolute;
+margin-left:349px;
+margin-top:120px;
+
+}
+.frontr{
+position:absolute;
+margin-left:10px;
+margin-top:10px;
+
+}
+.front2{
+position:absolute;
+z-index: -1;
+border:5px solid white;
+
+}
+.ques {
+color:black;
+font-family:verdana;
+font-size:40px;
+text-align:center;
+padding:5px;
+}
+.rule{
+color:black;
+font-family:verdana;
+font-size:24px;
+text-align:left;
+padding:10px;
+}
+
+.marksobt{
+color:#34495E;
+font-family:courier;
+font-size:30px;
+text-align:right;
+padding:10px;
+
+}
+#my_canvas{
+position:relative;
+margin-top:60px;
+margin-left:380px;
+
+}
+.time{
+position:fixed;
+margin-top:40px;
+color:#34495E;
+font-family:courier;
+font-size:30px;
+margin-left:20px;
+}
+.result{
+
+font-family:courier;
+font-size:30px;
+text-align:center;
+padding:10px;
+
+}
+.playagain {
+margin-left:400px;
+color:white;
+background-color: #0E6655; 
+margin-top:100px;
+}
+.home{
+margin-left:800px;
+color:white;
+background-color: #0E6655; 
+margin-top:100px;
+
+
+}
+.playagain1{
+margin-left:380px;
+color:white;
+background-color: #8E1137; 
+margin-top:10px;
+padding:20px 12px;
+width:200px;
+}
+</style>
+<script>
+
+
+var name,score,cw,ch,pos,test,question,choice,choices,testplayer,correct=0,play=3,sim,marks=0;
+
+var questions=[
+	["Paro is the international airport of BHUTAN","True"],
+	["Kalpana Lajmi	is the niece of the producer-director Guru Dutt?","True"],
+	["'O Meri Munni' is the first Hindi album by remo fernandes","True"],
+	["Farah khan's directorial debut was 'Main Hoon Na' starring Shah Rukh Khan?","True"],
+	["The football club Churchill Brothers plays in domestic league of goa","True"],
+	["Wolverhampton Wanderers Football Club is known as 'The Blades'","False"],
+	["P.T.Usha was the first Indian woman to win a medal in the Olympics?","False"],
+	["The rules of basketball was invented by James Naismith of USA?","True"],
+	["The maximum cylinder capacity of a Formula One engine is 5 litre?","False"],
+	["According to Hindu mythology, shukracharya is the guru of the asuras?","True"],
+	["Ravan was the son of Kaikasi?","True"],
+	["According to Hindu mythology, siddhi was the wife of Surya?","False"],
+	["Japan has signed a defence pact with France regarding the transfer of Military Equipment and technology.","True"],
+	["Maldives former President has been sentenced to 13 years of Imprisonment?","True"],
+	["Bhai-chung Bhutia has been appointed as the Brand Ambassador of North-East India?","False"],
+	["The Law Commission recently recommended the Introduction of compulsory voting.","False"],
+	["Hubble Space Telescope has spotted a large saltwater ocean under the icy crust of Jupiter's Moon (Ganymede)?","True"],
+	["Government to launch a hub & spoke model to set up science cities and science centres and to set up 5 zones to have a science city individually?","True"],
+	[" Gianni Infantino has been elected as FIFA’s first female Secretary General with zero experience on Soccer to run the day to day administration?","False"],
+	["Manjula Chandrashekar Indian based artist won third prize at UN poster contest on N-Disarmament conducted by UN General Assembly?","False"],
+	["Himachal Pradesh has bagged the best family destination in the country in the Lonely Planet Magazine India Travel Awards 2016?","False"],
+	["Leicester has won the first Premier League title short of playing after second place Tottenham drew 2-2 at Chelsea?","True"],
+	["The Master Blaster Sachin Tendulkar has accepted India’s Olympic Association’s invitation to become the Goodwill Ambassador for the 2016 Rio Olympics","True"],
+    ["Scientists have developed a microscopic engine which is set be the smallest in the world, which capable of driving nanobots and medical robots that could travel through the body.","True"],
+	["Barack Obama becomes first US president to visit Hiroshima bomb site ","True"],
+	["Syamantak Payra has won the prestigious Intel Foundation Young Scientist Award","True"],
+	["The world’s largest single rooftop solar power plant has been opened in Punjab state of India? ","True"],
+	["The World’s first Scanning Helium Microscope (SHeM) has been built by INDIA?","False"],
+	["Srabani Nanda is associated with boxing?","False"],
+	["The Pench National Park is located in Gujarat.","False"],
+	["The 42nd edition of Group of 7 (G7) Summit will be held at Kyoto, Japan ","False"],
+	["Tsai Ing-wen has been sworn in as the first female President of Taiwan","True"],
+	["The book “Firaq Gorakhpuri: The Poet of Pain and Ecstasy” has been authored by Ragunath Sharma","False"],
+	["Dadasaheb Phalke is popularly known as 'Father of Indian Cine	","True"],
+	[" R.D. Burman is also known as Pancham	","True"],
+	["Rab Ne Bana Di Jodi was the last movie directed by Yash Chopra?	","False"],
+	["The tagline 'Connecting people' belongs to Motorola","False"],
+	["'Just do it' is the tagline of Nike","True"],
+	["'The Complete Man' is the punch line of Axe","False"],
+	["Virendra Sehwag has hit the maximum number of sixes in his Test career?","False"],
+	["Chris Gayle scored the first international Twenty20 century?","True"],
+	["Yashpal Sharma is the only Indian batsman to have no ducks in his entire cricket career?","True"],
+	["India played its 1st One Day International match in Headingley","True"],
+	["C.K. Nayudu is the only bowler to have got Sir Donald Bradman out hit-wicket?","False"],
+	["C.K. Nayudu was the first Test captain of India?","True"],
+	["Pakistan was the first Asian team to win the World Cup?","False"],
+	["Lal Bahadur Shastri was the first non Congress Indian Prime Minister?","False"],
+	["Sarojini Naidu was the first Indian woman to be the president of the Indian National Congress?","True"],
+	["The longest river in the world is Nile","True"],
+	["There are 3 colours in Indian National flag?","False"],
+	["2 digits make up the binary system?","True"],
+	["Orange is full of VITAMIN C","True"],
+	["Blood is filtered by Heart","False"],
+	["DVD stands for Digital Video Disc","False"],
+	["Bombay is Dominique Lapierre's 'City Of Joy' based.","False"],
+	["Hematite and magnetite are ores of Zinc?","False"],
+	["The city of Mysore has derived its name from the Sanskrit word for buffalo town","True"],
+	["JPY is the currency code of Japan?","True"],
+	["Eiffel Tower is built entirely with iron","True"],
+	["The White Lotus rebellion occurred in which china","True"],
+	["Tribhuvan Airport is the International Airport of which Nepal","True"],
+	["Saina Nehwal won Australian open 2016","True"],
+	["Leander Paes made record 8 times entry in Olympics ","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"],
+	["","True"]
+
+];
+
+var leaderarray=["abc",0];
+function _(x){
+	return document.getElementById(x);
+}
+
+function testlead()
+{
+   testplayer=prompt("enter name","");         //error in this function
+    if(marks>leaderarray[1])
+	{
+	 leaderarray[0]=testplayer;
+	 leaderarray[1]=marks;
+	}
+
+
+}
+
+
+
+function leader(){
+
+test=_("test");
+test.innerHTML="<h2>"+leaderarray[0]+"</h2>";
+test.innerHTML+="<h2>"+leaderarray[1]+"</h2>";
+test.innerHTML+="<button class='button home'  onclick='start()'>Home</button>";
+}
+
+function renderQuestion()
+{   
+    test=_("test");
+	
+	if(play==0)
+	{
+	
+     
+	var ctx = _('my_canvas').getContext('2d');
+	
+	test.innerHTML="<h2 class='result'>You got : "+correct+" answers correct</h2>";
+	test.innerHTML+="<h2 class='result'>Total points : "+marks+"</h2>";
+	ctx.clearRect(0,0,cw,ch);
+	testlead();
+	
+	ctx.clearRect(0,0,cw,ch);
+	correct=0;
+	play=3;
+	marks=0;
+	test.innerHTML+="<button class='button playagain'  onclick='renderQuestion()'>PLAY AGAIN</button>";
+	test.innerHTML+="<button class='button home'  onclick='start()'>Home</button>";
+	return false;
+	}
+	test.innerHTML="<h2 class='time'>Time Left</h2>";
+	 pos=Math.floor(Math.random() * 50) + 1 ;
+	question=questions[pos][0];
+	
+	test.innerHTML+="<h2 class='marksobt'>Marks : "+marks+ "&nbsp;&nbsp;Lives left : "+play+"</h2>";
+	test.innerHTML+="<h2 class='ques'>"+question+"</h2>";
+	test.innerHTML+="<button class='button buttont'   onclick='check(\"True\")'>True</button>";
+	test.innerHTML+="<button class='button buttonf'   onclick='check(\"False\")'>False</button><br>";
+	test.innerHTML+="<button class='buttonquit'       onclick='checkquit()'>Quit</button>";
+	progress();
+}
+function checkquit()
+{
+ clearTimeout(sim);
+ play=0;
+ renderQuestion();
+}
+
+function check(choice)
+{  
+  clearTimeout(sim);
+  if(choice==questions[pos][1])
+   {
+   correct++;
+   marks=marks+10;
+   pos=Math.floor(Math.random() * 50) + 1 ;
+   renderQuestion();
+   }
+   else{
+   marks=marks-5;
+   play--;
+   renderQuestion();
+       }
+}
+
+function rules()
+{
+test=_("test");
+test.innerHTML="<p class='rule'>Rules:<br><br>1.The game consists of several questions which can be answered in either True or False.<br>2.Maximum 12 seconds for answering each question.<br>3. +10 points for each correct answer.<br> 4. Penalty of -5 for wrong answer and you will lose a life, lose all of your 3 lives and its Game Over!<br><br>Note: Currently, this game is not adapted for mobile phones. Please enjoy through your PC!</p>";
+test.innerHTML+="<button class='button playagain1'   onclick='renderQuestion()'>Start</button><br>";
+}
+function start()
+{test=_("test");
+test.innerHTML="<img class='front'src='tof3.png'   >";
+//test.innerHTML+="<img class='frontr' width='100' height='90 'src='tofr.jpg'   >";
+test.innerHTML+="<button class='button button1' type='button'   onclick='renderQuestion()'>Start</button><br>";
+test.innerHTML+="<button class='button button2' type='button'   onclick='rules()'>Rules</button><br>";
+//test.innerHTML+="<button class='button button3' type='button'   onclick='leader()'>HighScore</button>";
+}
+
+function progress()
+{
+var ctx = _('my_canvas').getContext('2d');
+var al = 0;
+var start = 4.72;
+ cw = ctx.canvas.width;
+ ch = ctx.canvas.height;
+var diff;
+
+function progressSim(){
+diff=((al/100)*Math.PI*2*10).toFixed(2);
+ctx.clearRect(0,0,cw,ch);
+ctx.lineWidth=10;
+ctx.fillStyle='#0E6655';
+ctx.strokeStyle="#0E6655";
+ctx.textAlign='center';
+
+ctx.beginPath();
+ctx.arc(35,35,30,start,diff/10+start,false);
+ctx.stroke();
+if(al>=100)
+{
+clearTimeout(sim);
+play--;
+marks=marks-5;
+renderQuestion();
+}
+al++;
+}
+ sim=setInterval(progressSim,110);
+}
+window.addEventListener("load",start,false);
+</script>
+
+
+</head>
+
+<body>
+<div id="test"></div>
+
+<canvas id="my_canvas" width="70" height="70" background-color="#C0C0C0"style="border:1px ;">
+
+</canvas>
+</body>
+</html>
